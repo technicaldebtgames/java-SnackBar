@@ -1,5 +1,7 @@
 package snackBar;
 
+import java.text.NumberFormat;
+
 public class Main {
 
     private static void run()
@@ -35,12 +37,14 @@ public class Main {
     private static void outputCustomerBuysSnack(Customer customer, Snack snack, int quantity)
     {
 
+        NumberFormat dollarFormatter = NumberFormat.getCurrencyInstance();
+
         customer.buySnacks(snack.getTotalCost(quantity));
         snack.buySnack(quantity);
 
         System.out.println("");
         System.out.println(customer.getName() + " buys " + quantity + " of " + snack.getName());
-        System.out.println(customer.getName() + "'s cash on hand is $" + customer.getCashOnHand());
+        System.out.println(customer.getName() + "'s cash on hand is " + dollarFormatter.format(customer.getCashOnHand()));
         System.out.println("Quantity of " + snack.getName() + " is " + snack.getQuantity());
         System.out.println("");
 
@@ -49,11 +53,13 @@ public class Main {
     private static void outputCustomerFindsCash(Customer customer, double cashFound)
     {
 
+        NumberFormat dollarFormatter = NumberFormat.getCurrencyInstance();
+
         customer.addCashOnHand(cashFound);
 
         System.out.println("");
-        System.out.println(customer.getName() + " finds $" + cashFound);
-        System.out.println(customer.getName() + " has $" + customer.getCashOnHand());
+        System.out.println(customer.getName() + " finds " + dollarFormatter.format(cashFound));
+        System.out.println(customer.getName() + " has " + dollarFormatter.format(customer.getCashOnHand()));
         System.out.println("");
 
     }
